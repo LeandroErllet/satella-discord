@@ -23,11 +23,11 @@ public class AddReactionsListener implements EventListener {
     @SneakyThrows
     @Override
     public void onEvent(@NotNull GenericEvent event) {
-        if (event instanceof MessageReceivedEvent messageReceivedEvent) {
+        if (event instanceof MessageReceivedEvent) {
+            val messageReceivedEvent = (MessageReceivedEvent) event;
             val channel = messageReceivedEvent.getChannel();
             val guild = messageReceivedEvent.getGuild();
-            val eventMessageOptional = guildService
-                    .getWarningChannel(guild)
+            val eventMessageOptional = guildService.getWarningChannel(guild)
                     .filter(textChannel -> channel.getId().equalsIgnoreCase(textChannel.getId()))
                     .map(textChannel -> messageReceivedEvent.getMessage());
             eventMessageOptional.ifPresent(eventMessage -> guildService

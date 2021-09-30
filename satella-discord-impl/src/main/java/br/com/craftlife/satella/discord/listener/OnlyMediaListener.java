@@ -21,7 +21,8 @@ public class OnlyMediaListener implements EventListener {
 
     @Override
     public void onEvent(@NotNull GenericEvent event) {
-        if (event instanceof MessageReceivedEvent messageReceivedEvent) {
+        if (event instanceof MessageReceivedEvent) {
+            val messageReceivedEvent = (MessageReceivedEvent) event;
             val channel = messageReceivedEvent.getChannel();
             val guild = messageReceivedEvent.getGuild();
             val eventMessageOptional = guildService
